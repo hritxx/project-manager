@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import projectRoutes from "./routes/projectRoutes";
+import taskRoutes from "./routes/taskRoutes";
 
 //ROUTE IMPORTS
 
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
   res.send("This is the home route.");
 });
 app.use("/projects", projectRoutes);
+app.use("/tasks", taskRoutes);
 
 // SERVERS
 const port = process.env.PORT || 3000;
