@@ -14,7 +14,7 @@ type Props = {
 
 type TaskTypeItems = "task" | "milestone" | "project";
 
-const TimelineView = ({ id, setIsModalNewTaskOpen }: Props) => {
+const Timeline = ({ id, setIsModalNewTaskOpen }: Props) => {
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
   const { data: projects, isError, isLoading } = useGetProjectsQuery();
 
@@ -48,7 +48,7 @@ const TimelineView = ({ id, setIsModalNewTaskOpen }: Props) => {
   };
 
   if (isError || !projects)
-    return <div>An error has occurred while fetching projects.</div>;
+    return <div>An error occurred while fetching projects.</div>;
   if (isLoading) return <div> Loading...</div>;
 
   return (
@@ -74,21 +74,14 @@ const TimelineView = ({ id, setIsModalNewTaskOpen }: Props) => {
             {...displayOptions}
             columnWidth={displayOptions.viewMode === ViewMode.Month ? 150 : 100}
             listCellWidth="100px"
-            barBackgroundColor={isDarkMode ? "#101214" : "#aeb8c2"}
-            barBackgroundSelectedColor={isDarkMode ? "#000" : "#9ba1e6"}
+            projectBackgroundColor={isDarkMode ? "#101214" : "#1f2937"}
+            projectProgressColor={isDarkMode ? "#1f2937" : "#aeb8c2"}
+            projectProgressSelectedColor={isDarkMode ? "#000" : "#9ba1a6"}
           />
-        </div>
-        <div className="px-4 pb-5 pt-1">
-          <button
-            className="flex items-center rounded bg-blue-primary px-3 py-2 text-white hover:bg-blue-600"
-            onClick={() => setIsModalNewTaskOpen(true)}
-          >
-            Add New Task
-          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default TimelineView;
+export default Timeline;

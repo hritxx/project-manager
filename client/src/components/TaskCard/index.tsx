@@ -6,7 +6,7 @@ type Props = {
   task: Task;
 };
 
-const index = ({ task }: Props) => {
+const TaskCard = ({ task }: Props) => {
   return (
     <div className="mb-5 rounded bg-white p-4 shadow dark:bg-dark-secondary dark:text-white">
       {task.attachments && task.attachments.length > 0 && (
@@ -53,4 +53,4 @@ const index = ({ task }: Props) => {
   );
 };
 
-export default index;
+export default TaskCard;
