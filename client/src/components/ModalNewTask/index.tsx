@@ -47,7 +47,7 @@ const ModalNewTask = ({ isOpen, onClose, id = null }: Props) => {
   };
 
   const isFormValid = () => {
-    return title && authorUserId && !(id !== null || projectId);
+    return title && authorUserId;
   };
 
   const selectStyles =
@@ -86,11 +86,10 @@ const ModalNewTask = ({ isOpen, onClose, id = null }: Props) => {
               setStatus(Status[e.target.value as keyof typeof Status])
             }
           >
-            <option>Select Status</option>
             <option value="">Select Status</option>
             <option value={Status.ToDo}>To Do</option>
-            <option value={Status.UnderReview}>Under Review</option>
             <option value={Status.WorkInProgress}>Work In Progress</option>
+            <option value={Status.UnderReview}>Under Review</option>
             <option value={Status.Completed}>Completed</option>
           </select>
           <select
@@ -100,13 +99,12 @@ const ModalNewTask = ({ isOpen, onClose, id = null }: Props) => {
               setPriority(Priority[e.target.value as keyof typeof Priority])
             }
           >
-            <option>Select Priority</option>
             <option value="">Select Priority</option>
-            <option value={Priority.Backlog}>Backlog</option>
-            <option value={Priority.High}>High</option>
-            <option value={Priority.Low}>Low</option>
-            <option value={Priority.Medium}>Medium</option>
             <option value={Priority.Urgent}>Urgent</option>
+            <option value={Priority.High}>High</option>
+            <option value={Priority.Medium}>Medium</option>
+            <option value={Priority.Low}>Low</option>
+            <option value={Priority.Backlog}>Backlog</option>
           </select>
         </div>
         <input
@@ -160,7 +158,7 @@ const ModalNewTask = ({ isOpen, onClose, id = null }: Props) => {
           }`}
           disabled={!isFormValid() || isLoading}
         >
-          {isLoading ? "Creating..." : "Create Project"}
+          {isLoading ? "Creating..." : "Create Task"}
         </button>
       </form>
     </Modal>

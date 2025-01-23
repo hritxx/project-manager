@@ -25,17 +25,26 @@ const TimelineView = ({ id, setIsModalNewTaskOpen }: Props) => {
   });
 
   const ganttTasks = useMemo(() => {
+    if (!tasks || tasks.length === 0) {
+      return [];
+    }
     return (
-      tasks?.map((task) => ({
-        start: new Date(task.startDate as string),
-        end: new Date(task.dueDate as string),
-        name: task.title,
-        id: `Task-${task.id}`,
-        type: "task" as TaskTypeItems,
-        progress: task.points ? (task.points / 10) * 100 : 0,
-
-        isDisabled: false,
-      })) || []
+      tasks
+        ?.map((task) => {
+          if (!task.startDate || !task.dueDate) {
+            return null;
+          }
+          return {
+            start: new Date(task.startDate as string),
+            end: new Date(task.dueDate as string),
+            name: task.title,
+            id: `Task-${task.id}`,
+            type: "task" as TaskTypeItems,
+            progress: task.points ? (task.points / 10) * 100 : 0,
+            isDisabled: false,
+          };
+        })
+        .filter((task) => task !== null) || []
     );
   }, [tasks]);
 

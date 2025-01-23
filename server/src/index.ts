@@ -5,14 +5,12 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 
-//Routes
+//ROUTE IMPORTS
 import projectRoutes from "./routes/projectRoutes";
 import taskRoutes from "./routes/taskRoutes";
 import searchRoutes from "./routes/searchRoutes";
 import userRoutes from "./routes/userRoutes";
 import teamRoutes from "./routes/teamRoutes";
-
-//ROUTE IMPORTS
 
 dotenv.config();
 const app = express();
